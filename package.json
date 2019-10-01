@@ -1,0 +1,16 @@
+{
+  "name": "gulp",
+  "version": "1.0.0",
+  "description": "simple config",
+  "main": "gulpconfig.js",
+  "scripts": {
+    "start": "./node_modules/.bin/gulp dev"
+  },
+  "author": "Hillel",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-remove-files": "0.0.3",
+    "gulp-sass": "^4.0.1"
+  }
+}
