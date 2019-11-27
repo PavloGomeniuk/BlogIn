@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
 import {Switch} from 'react-router-dom';
-import AppIndex from './AppIndex.jsx';
 import Contactpage from './Contactpage.js';
-import AppReview from './AppReview.js';
+import Postlist from './Postlist.js';
 import {Route} from 'react-router-dom';
 import LoginContainer from '../containers/LoginContainer.js';
 import ProfileContainer from '../containers/ProfileContainer';
@@ -30,7 +29,7 @@ export default class Header extends Component {
                             <Link to="/Profile" className="header-menu-links">Profile</Link>
                         </li>
                         <li className="li-header">
-                            <Link to="/Contactpage" className="header-menu-links">Contact</Link>
+                            <Link to="/Contactpage" className="header-menu-links">Add to blog</Link>
                         </li>
                     </ul>
                 </nav>
@@ -38,7 +37,7 @@ export default class Header extends Component {
         </header>
         <main className="main">
             <Switch>
-                <Route exact path="/" component={AppIndex} />
+                <Route exact path="/" exact component={() => <Postlist />} />
                 <Route exact path="/Login" component={LoginContainer} />
                 <Route path="/Contactpage" component={Contactpage} />
                 <PrivateRoute path="/profile" component={ProfileContainer} />

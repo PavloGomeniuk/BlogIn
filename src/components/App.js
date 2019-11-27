@@ -11,11 +11,9 @@ import reducer from '../reducers'
 if (module.hot) {
   module.hot.accept();
 }
-const middleware = [thunk]
 
-
-const store = createStore(reducer, applyMiddleware(...middleware));
-
+const middleware = (applyMiddleware(thunk));
+const store = createStore(reducer, middleware);
 ReactDOM.render((
 	<Provider store={store}>
 		<BrowserRouter>

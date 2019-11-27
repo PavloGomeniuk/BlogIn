@@ -1,8 +1,12 @@
 import { checkCredentials } from '../helpers/session'
+import { postsApi } from '../components/api';
 
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
+
+
+
 
 export function logIn(params, cb) {
   return dispatch => {
@@ -31,3 +35,6 @@ export function logOut() {
     type: LOG_OUT,
   }
 }
+
+
+

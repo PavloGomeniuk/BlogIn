@@ -6,7 +6,7 @@ export default class Contactpage extends Component {
 					render() {
 						return (
 							<div className="main-section-first-contact-container">
-								<h3> Contact Us </h3>
+								<h3>Add to blog</h3>
 								<FormContainer />
 							</div>
 						);
@@ -57,31 +57,16 @@ export default class Contactpage extends Component {
 						super(props);
 						this.state = {
 							newUser: {
-							name: '',
-							email: '',
-							comment: ''
+							title: '',
+							text: '',
+							backgroundURL: ''
 							},
 						}
 						this.handleTextArea = this.handleTextArea.bind(this);
-						this.handleEmail = this.handleEmail.bind(this);
-						this.handleFullName = this.handleFullName.bind(this);
 						this.handleFormSubmit = this.handleFormSubmit.bind(this);
 						this.handleClearForm = this.handleClearForm.bind(this);
 						this.handleInput = this.handleInput.bind(this);
 					}
-				handleFullName(e) {
-					let value = e.target.value;
-					this.setState( prevState => ({ 
-						newUser : {...prevState.newUser, name: value}
-					}), () => console.log(this.state.newUser))
-				}
-
-				handleEmail(e) {
-					let value = e.target.value;
-					this.setState( prevState => ({ 
-						newUser : {...prevState.newUser, email: value}
-					}), () => console.log(this.state.newUser))
-				}
 
 				handleInput(e) {
 					let value = e.target.value;
@@ -95,14 +80,15 @@ export default class Contactpage extends Component {
 					console.log("Inside handleTextArea");
 					let value = e.target.value;
 					this.setState(prevState => ({
-						newUser: {...prevState.newUser, comment: value}
+						newUser: {...prevState.newUser, text: value}
 					}), ()=>console.log(this.state.newUser))
 				}
 
 				handleFormSubmit(e) {
 					e.preventDefault();
 					let userData = this.state.newUser;
-					fetch('https://formula-test-api.herokuapp.com/contact',{
+					console.log(userData);
+					fetch('http://localhost:3000/posts',{
 						method: "POST",
 						body: JSON.stringify(userData),
 						headers: {
@@ -110,6 +96,7 @@ export default class Contactpage extends Component {
 							'Content-Type': 'application/json'
 						},
 					}).then(response => {
+						console.log(userData);
 						response.json().then(data =>{
 							console.log("Successful" + data);
 						})
@@ -120,9 +107,9 @@ export default class Contactpage extends Component {
 					e.preventDefault();
 					this.setState({ 
 						newUser: {
-							name: '',
-							email: '',
-							comment: ''
+							title: '',
+							text: '',
+							backgroundURL: ''
 						},
 					})
 				}
@@ -130,30 +117,30 @@ export default class Contactpage extends Component {
 				render() {
 					return (
 						<form className="container-fluid" onSubmit={this.handleFormSubmit}>
-							<Input inputType={'text'}
-										 title= {'Full Name'} 
-										 name= {'name'}
-										 value={this.state.newUser.name} 
-										 placeholder = {'Enter your name'}
+							<Input inputtype={'text'}
+										 title= {'Title'} 
+										 name= {'title'}
+										 value={this.state.newUser.title} 
+										 placeholder = {'Enter Title'}
 										 handleChange = {this.handleInput}
 							/>
 
-							<Input inputType={'email'} 
-										 name={'email'}
-										 title= {'Email'} 
-										 value={this.state.newUser.email} 
-										 placeholder = {'Enter your email'}
-										 handleChange={this.handleEmail} 
-							/> 
-
 							<TextArea
-										 title={'Comment'}
+										 title={'text'}
 										 rows={10}
-										 value={this.state.newUser.comment}
-										 name={'comment'}
+										 value={this.state.newUser.text}
+										 name={'text'}
 										 handleChange={this.handleTextArea}
-										 placeholder={'Comment'} 
+										 placeholder={'Enter text'} 
 							/>
+
+							<Input inputtype={'text'} 
+										 name={'backgroundURL'}
+										 title= {'ImageUrl'} 
+										 value={this.state.newUser.backgroundURL} 
+										 placeholder = {'Enter ImageURL'}
+										 handleChange={this.handleInput} 
+							/> 
 
 							<Button 
 										 action = {this.handleFormSubmit}
