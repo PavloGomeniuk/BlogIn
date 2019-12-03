@@ -9,6 +9,7 @@ import LoginContainer from '../containers/LoginContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import PrivateRoute from '../containers/PrivateRoute';
 import NotFound from './NotFound';
+import JournalPost from './JournalPost';
 
 export default class Header extends Component {
           render() {
@@ -23,13 +24,13 @@ export default class Header extends Component {
                             <Link to="/" className="header-menu-links">Journal</Link>
                         </li>
                         <li className="li-header">
-                            <Link to="/Login" className="header-menu-links">Login</Link>
+                            <Link to="/AddPage" className="header-menu-links">Add to journal</Link>
                         </li>
                         <li className="li-header">
                             <Link to="/Profile" className="header-menu-links">Profile</Link>
                         </li>
                         <li className="li-header">
-                            <Link to="/AddPage" className="header-menu-links">Add to blog</Link>
+                            <Link to="/Login" className="header-menu-links">Login</Link>
                         </li>
                     </ul>
                 </nav>
@@ -41,6 +42,7 @@ export default class Header extends Component {
                 <Route exact path="/Login" component={LoginContainer} />
                 <Route path="/AddPage" component={AddPage} />
                 <PrivateRoute path="/profile" component={ProfileContainer} />
+                <Route path="/post/:id" exact component={JournalPost} />
                 <Route component={NotFound} />
             </Switch>
         </main>

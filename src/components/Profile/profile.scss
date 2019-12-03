@@ -1,0 +1,19 @@
+.profile-title {
+	text-align: center;
+	color: #138a74;
+}
+
+.main-section-profile {
+	&-text{
+		display: flex;
+		dd {
+			margin-right: 10px;
+		}
+		a{
+	      color: #7e7f88;
+	      &:hover{
+	        color: #58c93a;
+	    }
+    }
+	}
+}

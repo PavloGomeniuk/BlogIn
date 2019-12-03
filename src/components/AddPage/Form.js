@@ -3,7 +3,7 @@ import TextArea from './TextArea';
 import Button from './Button';
 import Input from './Input';
 
-export default		class FormContainer extends Component {  
+export default	class FormContainer extends Component {  
 					constructor(props) {
 						super(props);
 						this.state = {
@@ -69,15 +69,23 @@ export default		class FormContainer extends Component {
 					return (
 						<form className="container-fluid" onSubmit={this.handleFormSubmit}>
 							<Input inputtype={'text'}
-										 title= {'Title'} 
+										 title= {'Title of your story'} 
 										 name= {'title'}
 										 value={this.state.newUser.title} 
-										 placeholder = {'Enter Title'}
+										 placeholder = {'Enter title'}
 										 handleChange = {this.handleInput}
 							/>
 
+							<Input inputtype={'text'} 
+										 name={'backgroundURL'}
+										 title= {'Download image for your story'} 
+										 value={this.state.newUser.backgroundURL} 
+										 placeholder = {'Enter image url'}
+										 handleChange={this.handleInput} 
+							/> 
+
 							<TextArea
-										 title={'text'}
+										 title={'Describe your story'}
 										 rows={10}
 										 value={this.state.newUser.text}
 										 name={'text'}
@@ -85,33 +93,25 @@ export default		class FormContainer extends Component {
 										 placeholder={'Enter text'} 
 							/>
 
-							<Input inputtype={'text'} 
-										 name={'backgroundURL'}
-										 title= {'ImageUrl'} 
-										 value={this.state.newUser.backgroundURL} 
-										 placeholder = {'Enter ImageURL'}
-										 handleChange={this.handleInput} 
-							/> 
-
-							<Button 
+							<div className="btn-box">
+								<Button 
 										 action = {this.handleFormSubmit}
+										 style = {'btn_accept'}
 										 type = {'primary'} 
 										 title = {'Submit'} 
-										 style={buttonStyle}
 							/> 
 						
 							 <Button 
 										 action = {this.handleClearForm}
+										 style = {'btn_clear'}
 										 type = {'secondary'}
 										 title = {'Clear'}
-										 style={buttonStyle}
-							/> 
+							/>
+							</div> 
 						</form>
 					 );
 				}
 			}
-			const buttonStyle = {
-				margin : '10px 10px 10px 10px'
-			}
+
 
 		

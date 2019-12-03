@@ -3,10 +3,10 @@ import PostItem  from './PostItem';
 
 
 
-const PostsList = ({ items, onRemove }) => {
+const PostsList = ({ items}) => {
   return (
     <div className="main">
-      {items ? items.map(blog => <PostItem {...blog} onRemove={onRemove} />) : 'Loading...'}
+      {items ? items.map(blog => <PostItem {...blog} />) : 'Loading...'}
       <section className="main-section-bottom">
                 <div className="main-section-bottom-line"></div>
                 <div className="main-section-bottom-btn">

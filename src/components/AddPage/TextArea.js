@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 const TextArea = (props) => (  
-					<div className="form-group">
+					<div className="form-group-textarea">
 						<label className="form-label">{props.title}</label>
 						<textarea
 							className="form-textarea"

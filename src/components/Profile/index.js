@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Titles from './Titles.js';
+import './profile.scss';
 
 const Profile = ({ user }) => {
   return (
     <React.Fragment>
-      <h2>Профиль</h2>
-      <p>Вас зовут: {user.name}</p>
+      <h2 className="profile-title">Welcome {user.name}</h2>
+      <Titles/>
     </React.Fragment>
+    
   )
 }
 

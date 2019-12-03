@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
+import './login.scss';
 
 
 export default class Login extends Component {
@@ -52,22 +53,32 @@ export default class Login extends Component {
 			return (
 				      <div>
         {errorMsg && <p>{errorMsg}</p>}
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input
-            data-field-name={'username'}
-            type={'text'}
-            onChange={this.handleChange}
-            placeholder={'Имя'}
-            value={username}
-          />
-          <input
-            data-field-name={'password'}
-            type={'text'}
-            onChange={this.handleChange.bind(this)}
-            placeholder={'Пароль'}
-            value={password}
-          />
-          <button type="submit">Log in</button>
+        <form onSubmit={this.handleSubmit.bind(this)}  className="form-1">
+           <p class="field">
+              <input
+                data-field-name={'username'}
+                type={'text'}
+                onChange={this.handleChange}
+                placeholder={'Enter your name'}
+                value={username}
+              />
+              <i class="icon-user icon-large">&#9786;</i>
+          </p>
+          <p class="field">
+              <input
+                data-field-name={'password'}
+                type={'text'}
+                onChange={this.handleChange.bind(this)}
+                placeholder={'Enter your password'}
+                value={password}
+              />
+              <i class="icon-lock icon-large">&#128274;</i>
+          </p>
+          <p class="submit">
+              <button type="submit">
+                <i class="icon-arrow-right icon-large"> &#10148;</i>
+              </button>
+          </p>
         </form>
       </div>
 			)

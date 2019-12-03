@@ -14,6 +14,7 @@ if (module.hot) {
 
 const middleware = (applyMiddleware(thunk));
 const store = createStore(reducer, middleware);
+
 ReactDOM.render((
 	<Provider store={store}>
 		<BrowserRouter>
