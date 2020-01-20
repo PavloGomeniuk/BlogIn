@@ -14,7 +14,7 @@ import JournalPost from './JournalPost';
 export default class Header extends Component {
           render() {
             return (
-     <div>
+     <React.Fragment>
         <header className="header">
             <section className="header-menu-section">
                 <h1 className="header-menu-section-h1">Blogin<span>.</span></h1>
@@ -66,7 +66,7 @@ export default class Header extends Component {
                 </div>
             </section>
         </footer>
-     </div>
+     </React.Fragment>
 )
 }}
 

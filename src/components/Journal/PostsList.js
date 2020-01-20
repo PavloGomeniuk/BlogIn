@@ -5,7 +5,7 @@ import PostItem  from './PostItem';
 
 const PostsList = ({ items}) => {
   return (
-    <div className="main">
+    <React.Fragment>
       {items ? items.map(blog => <PostItem {...blog} />) : 'Loading...'}
       <section className="main-section-bottom">
                 <div className="main-section-bottom-line"></div>
@@ -20,7 +20,7 @@ const PostsList = ({ items}) => {
                     </button>
                 </div>
         </section>
-    </div>
+    </React.Fragment>
   );
 };
 export default PostsList;

@@ -3,9 +3,9 @@ import TitlesItem  from './TitlesItem.js';
 
 const TitlesList = ({ items, onRemove }) => {
   return (
-    <div className="main">
+    <React.Fragment>
       {items ? items.map(blog => <TitlesItem {...blog} onRemove={onRemove} />) : 'Loading...'}
-    </div>
+    </React.Fragment>
   );
 };
 export default TitlesList;
