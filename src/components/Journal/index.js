@@ -6,13 +6,13 @@ import './journal.scss';
 
 
 class PostsListContainer extends React.Component {
-  componentWillMount() {
-    const { fetchItems } = this.props;
-    fetchItems();
-  }
-  render() {
-    return <PostsList items={this.props.items} />;
-  }
+	componentWillMount() {
+    	const { fetchItems } = this.props;
+    	fetchItems();
+  	}
+  	render() {
+    	return <PostsList items={this.props.items} />;
+  	}
 }
 
 export default connect(
