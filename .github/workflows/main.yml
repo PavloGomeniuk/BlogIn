@@ -36,11 +36,11 @@ jobs:
           #git rev-parse --verify --quiet main
           #echo $?
           if [ "$(git ls-remote --heads  --exit-code origin main)" != “0” ]; then
-            echo -e “rsync exit Code:” $RESULT “\nFAILED to rsync backups”
+            echo  “Branch does not exist”
             exit 0
           else
-            echo “SUCCESSFULL rsync of backups”
-            exit 0
+            echo “Branch already exist”
+            exit 1
           fi
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
