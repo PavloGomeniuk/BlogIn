@@ -35,7 +35,7 @@ jobs:
           git config user.email "<>"
           #git rev-parse --verify --quiet main
           #echo $?
-          if [ $(git ls-remote --heads  --exit-code origin main) != “0” ]; then
+          if [ "$(git ls-remote --heads  --exit-code origin main)" != “0” ]; then
             echo -e “rsync exit Code:” $RESULT “\nFAILED to rsync backups”
             exit 0
           else
