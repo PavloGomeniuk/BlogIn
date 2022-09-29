@@ -24,7 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          repository: 'git@github.com:PavloGomeniuk/Bakery.git'
+          repository: PavloGomeniuk/Bakery
           ref: ${{ github.event.inputs.Branch }}
       # Runs a single command using the runners shell
       - name: Run a one-line script
