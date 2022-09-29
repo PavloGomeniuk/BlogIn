@@ -12,7 +12,7 @@ on:
         required: true
         default: 'master'
       Branch_release:
-        description: 'Branch name on which jobs will be executed'
+        description: 'Branch name release'
         required: true
         default: 'master'
 
@@ -37,15 +37,16 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          #git rev-parse --verify --quiet main
-          #echo $?
-          if [ "$(git ls-remote --heads  --exit-code origin master)" != “0” ]; then
-            echo  “Branch does not exist”
-            exit 0
-          else
-            echo “Branch already exist”
-            exit 1
-          fi
+          function is_in_remote() {
+            local branch=${1}
+            local existed_in_remote=$(git ls-remote --heads origin ${branch})
+            if [[ -z ${existed_in_remote} ]]; then
+              echo "Branch does not exist"
+            else
+              echo "Branch exist"
+            fi
+          }
+          is_in_remote ${{ github.event.inputs.Branch_release }}
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
           #git push origin releases/v1
