@@ -34,7 +34,7 @@ jobs:
           git --version
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git rev-parse --verify --quiet main
+          git rev-parse --verify --quiet master
           #echo $?
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
