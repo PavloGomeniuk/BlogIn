@@ -31,6 +31,7 @@ jobs:
           repository: PavloGomeniuk/Bakery
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
+          token: ${{ secrets.GH_TOKEN }}
  
       # Runs a single command using the runners shell
       - name: Run a git script
