@@ -40,7 +40,7 @@ jobs:
             exit 0
           else
             echo “SUCCESSFULL rsync of backups”
-            exit 1
+            exit 0
           fi
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
