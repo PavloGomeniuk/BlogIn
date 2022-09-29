@@ -36,7 +36,15 @@ jobs:
           git config user.email "<>"
           #git rev-parse --verify --quiet main
           #echo $?
-          git ls-remote --heads  --exit-code origin main
+          RESULT = "git ls-remote --heads  --exit-code origin main"
+          if [ "$RESULT" != "0" ]; then
+            echo -e "rsync exit Code:" $RESULT "\nFAILED to rsync backups"
+            exit 0
+          else
+            echo "SUCCESSFULL rsync of backups"
+            exit 1
+          fi
+          
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
           #git push origin releases/v1
