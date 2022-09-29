@@ -35,7 +35,7 @@ jobs:
           git config user.email "<>"
           #git rev-parse --verify --quiet main
           #echo $?
-          RESULT = "git --version"
+          RESULT = $(git ls-remote --heads  --exit-code origin main)
           echo $RESULT
           git checkout -b releases/v1
           #git commit -a -m "prod dependencies"
