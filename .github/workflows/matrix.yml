@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: set-matrix
         run: |
-          matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\",\"order\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"},{\"hsc-ke\":\"${{ github.event.inputs.HSC-KE }}\"}]}"
+          matrix="{\"services\":[{\"service\":\"hsc-be\",\"tag\":\"${{ github.event.inputs.HSC-BE }}\"},{\"service\":\"hsc-fe\",\"tag\":\"${{ github.event.inputs.HSC-FE }}\"},{\"service\":\"hsc-ke\",\"tag\":\"${{ github.event.inputs.HSC-KE }}\"}]}"
           echo $matrix 
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix | jq ."
@@ -51,8 +51,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    if: github.job != 'e'
-    name: Run ${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}
+    if: matrix.services.tag != ''
+    #name: Run ${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -62,7 +62,7 @@ jobs:
           fetch-depth: '0'
       - name: installAdditionalSoftware
         run: |
-          echo "${{github.job.name}}"
-          echo "${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}"
+          echo "${{matrix.services.service}} ${{matrix.services.tag}}"
+ 
 
     
