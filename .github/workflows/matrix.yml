@@ -34,10 +34,8 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v2
-
       - id: set-matrix
         run: |
-          #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
           matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"}]}"
           echo $matrix 
           echo $matrix | jq .
@@ -48,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    if: github.job != 'build'
+    if: github.job != 'e'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
