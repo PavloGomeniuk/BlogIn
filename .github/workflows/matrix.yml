@@ -19,12 +19,17 @@ on:
       HSC-BE:
         description: 'Enter tag that you need to change not tag is'
         required: false
-        #default: 'v1'
+        default: 'v1'
         type: string
       HSC-FE:
         description: 'Enter tag that you need to change not tag is'
         required: false
-        #default: 'v1'
+        default: 'v2'
+        type: string
+      HSC-KE:
+        description: 'Enter tag that you need to change not tag is'
+        required: false
+        default: 'v3'
         type: string
         
 jobs:
@@ -36,7 +41,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: set-matrix
         run: |
-          matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"}]}"
+          matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"},{\"hsc-ke\":\"${{ github.event.inputs.HSC-KE }}\"}]}"
           echo $matrix 
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix | jq ."
