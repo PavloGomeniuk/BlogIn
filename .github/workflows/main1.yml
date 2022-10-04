@@ -50,7 +50,7 @@ jobs:
           pwd
           ls -la
           echo $DIREC
-          yq '.hsc-be.image.tag = "v1"' environments/$DIREC/hsc-be-proxy/values.yaml > values.yaml.new
+          yq '.hsc-be.image.tag = "v1"' "environments/"${{ github.event.inputs.Branch }}"/hsc-be-proxy/values.yaml" > values.yaml.new
           yq '.' environments/$DIREC/hsc-be-proxy/values.yaml > values.yaml.noblanks
           diff -B values.yaml.noblanks values.yaml.new > patch.file
           cat patch.file
