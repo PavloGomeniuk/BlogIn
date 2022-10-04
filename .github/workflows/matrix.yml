@@ -40,7 +40,7 @@ jobs:
           #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
           #matrix='{ "services" : [ "hsc-be":["${{ github.event.inputs.HSC-BE }}"],"hsc-fe":["${{ github.event.inputs.HSC-FE }}]"]}'
           matrix=$((
-            echo '{ "hsc-be" : ['
+            echo '{ "package" : ['
             echo "${{ github.event.inputs.HSC-BE }}"
             echo " ]}"
           ) | jq -c .)
