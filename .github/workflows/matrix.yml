@@ -38,9 +38,9 @@ jobs:
       - id: set-matrix
         run: |
           #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
-          matrix=$((
+           matrix=$((
             echo '{ "package" : ['
-            echo "${{ github.event.inputs.HSC-BE }}"
+            sed -n "/^REVDEP *:= */ { s///; p }" revdep-dev/Makefile | sed 's/ /, /g' | xargs -n 1 echo | sed -r 's/^([^,]*)(,?)$/"\1"\2/'
             echo " ]}"
           ) | jq -c .)
           echo $matrix 
