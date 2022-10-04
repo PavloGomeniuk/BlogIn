@@ -44,7 +44,7 @@ jobs:
 
       - name: updateHscHelmChart
         env:
-          DIREC: hell
+          DIREC: ${{ github.event.inputs.Branch }}
         run: |
           echo "$DIREC"
           yq '.hsc-be.image.tag = env(DIREC)' environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
