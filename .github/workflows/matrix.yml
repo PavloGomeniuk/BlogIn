@@ -62,7 +62,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    if: github.event.inputs.HSC-BE != ''
+    #if: github.event.inputs.HSC-BE != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -72,6 +72,6 @@ jobs:
           fetch-depth: '0'
       - name: installAdditionalSoftware
         run: |
-          echo "hello"
+          echo ${{matrix.services.hsc-be)}}
 
   
