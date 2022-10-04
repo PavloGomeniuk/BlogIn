@@ -43,9 +43,11 @@ jobs:
           wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.24.4/yq_linux_amd64 && chmod a+x /usr/local/bin/yq
 
       - name: updateHscHelmChart
+        env:
+          DIREC: ${{ github.event.inputs.HSC_BE }}
         run: |
           echo "hello"
-          yq '.hsc-be.image.tag = "${{ github.event.inputs.HSC_BE }}"' environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
+          yq '.hsc-be.image.tag = "$DIREC"' environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
           ls -la
           cat values.yaml.new
           #yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
