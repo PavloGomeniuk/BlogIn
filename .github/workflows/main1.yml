@@ -1,20 +1,45 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Subworkflow
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Environment name on which you want to make change'
+        required: true
+        type: choice
+        default: 'dev'
+        options: 
+        - dev
+        - demo
+        - qa
+        - prod
+      Branch:
+        description: 'Branch name on which jobs will be executed'
+        required: true
+        default: 'master'
+      HSC-BE:
+        description: 'Enter tag that you need to change not tag is'
+        required: false
+        type: string
+        
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-  deploy:
-    if: ${{ github.ref == 'refs/heads/master' }}
-    needs: build
+    if: github.event.inputs.HSC-BE != ''
     runs-on: ubuntu-latest
     steps:
-      - name: Set Environment Variables
-        uses: ./.github/actions/setvars
+      - uses: actions/checkout@v3
         with:
-          varFilePath: ./.github/variables/myvars.env
+          repository: PavloGomeniuk/BlogIn
+          ref: ${{ github.event.inputs.Branch }}
+          fetch-depth: '0'
+          
+      - name: Create release branch
+        run: |
+          apt-get update
+          pip install --upgrade pip
+          pip3 install git+https://github.com/python-semver/python-semver.git@3.0.0-dev.3
+          pip install bumpversion
+          wget -cq https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz -O - | tar -xz
+          mv linux-amd64/helm /usr/local/bin/helm && rm -r linux-amd64
+          wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.24.4/yq_linux_amd64 && chmod a+x /usr/local/bin/yq
+          echo "Hello"
+          echo ${{ github.event.inputs.HSC-BE }}
