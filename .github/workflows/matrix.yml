@@ -58,6 +58,7 @@ jobs:
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     name: ${{matrix.services.service}}
     runs-on: ubuntu-latest
+    if: matrix.services.tag != ''
     steps:
       - uses: actions/checkout@v3
         with:
