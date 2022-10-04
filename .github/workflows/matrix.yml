@@ -32,7 +32,7 @@ jobs:
 
       - id: set-matrix
         run: |
-          matrix= '{"fruit":{"name":"apple","color":"green","price":1.20}}'
+          matrix='{"fruit":{"name":"apple","color":"green","price":1.20}}'
           echo $matrix
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix"
