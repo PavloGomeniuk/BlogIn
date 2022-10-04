@@ -43,9 +43,6 @@ jobs:
             echo '{ "hsc-be" : ['
             echo "${{ github.event.inputs.HSC-BE }}"
             echo " ]}"
-            echo '{ "hsc-fe" : ['
-            echo "${{ github.event.inputs.HSC-FE }}"
-            echo " ]}"
           ) | jq -c .)
           echo $matrix 
           echo $matrix | jq .
