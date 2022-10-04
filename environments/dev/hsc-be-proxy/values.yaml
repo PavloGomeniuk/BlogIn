@@ -1,3 +1,7 @@
 hsc-be:
   image: 
     tag: v1
+
+hsc-fe:
+  image:
+    hesh: 1
