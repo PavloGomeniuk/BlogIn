@@ -26,15 +26,15 @@ jobs:
   build:
     if: github.event.inputs.HSC-BE != ''
     runs-on: ubuntu-latest
+    env:
+      DIREC: ${{ github.event.inputs.Envirinment }}
+      VARI: ${{ github.event.inputs.HSC-BE }}
     steps:
       - uses: actions/checkout@v3
         with:
           repository: PavloGomeniuk/BlogIn
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
-        env:
-          DIREC: ${{ github.event.inputs.Envirinment }}
-          VARI: ${{ github.event.inputs.HSC-BE }}
       - name: installAdditionalSoftware
         run: |
           sudo apt-get update
