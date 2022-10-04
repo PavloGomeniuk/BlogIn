@@ -15,7 +15,7 @@ on:
       Branch:
         description: 'Branch name on which jobs will be executed'
         required: true
-        default: 'INFRA-626/change-image-tags'
+        default: 'master'
       Hsc-be:
         description: 'Enter hsc-be tag that you need to change'
         required: false
@@ -28,8 +28,12 @@ on:
         description: 'Enter hsc-fe-admin tag that you need to change'
         required: false
         type: string
-      Hsc-spec:
-        description: 'Enter hsc-spec tag that you need to change'
+      Hsc-spec-public:
+        description: 'Enter hsc-spec-public tag that you need to change'
+        required: false
+        type: string
+      Hsc-spec-internal:
+        description: 'Enter hsc-spec-internal tag that you need to change'
         required: false
         type: string
         
@@ -42,7 +46,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: set-matrix
         run: |
-          matrix="{\"services\":[{\"service\":\"hsc-be\",\"tag\":\"${{ github.event.inputs.Hsc-be }}\"},{\"service\":\"hsc-fe\",\"tag\":\"${{ github.event.inputs.Hsc-fe }}\"},{\"service\":\"hsc-fe-admin\",\"tag\":\"${{ github.event.inputs.Hsc-fe-admin }}\"},{\"service\":\"hsc-spec\",\"tag\":\"${{ github.event.inputs.Hsc-spec}}\"}]}"
+          matrix="{\"services\":[{\"service\":\"hsc-be\",\"tag\":\"${{ github.event.inputs.Hsc-be }}\"},{\"service\":\"hsc-fe\",\"tag\":\"${{ github.event.inputs.Hsc-fe }}\"},{\"service\":\"hsc-fe-admin\",\"tag\":\"${{ github.event.inputs.Hsc-fe-admin }}\"},{\"service\":\"hsc-spec-public\",\"tag\":\"${{ github.event.inputs.Hsc-spec-public}}\"},{\"service\":\"hsc-spec-internal\",\"tag\":\"${{ github.event.inputs.Hsc-spec-internal}}\"}]}"
           echo $matrix 
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix | jq ."
@@ -61,6 +65,7 @@ jobs:
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
       - name: installAdditionalSoftware
+        if: matrix.services.tag != ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
  
