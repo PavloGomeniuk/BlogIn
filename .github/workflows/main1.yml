@@ -46,8 +46,8 @@ jobs:
         env:
           DIREC: ${{ github.event.inputs.HSC_BE }}
         run: |
-          echo "hello"
-          yq '.hsc-be.image.tag = "$DIREC"' environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
+          echo "$DIREC"
+          yq ".hsc-be.image.tag = "$DIREC"" environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
           ls -la
           cat values.yaml.new
           #yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
