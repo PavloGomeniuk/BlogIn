@@ -65,6 +65,8 @@ jobs:
         env:
           TAG: ${{ github.event.inputs.HSC-BE }}
         run: |
+          git config --global user.email "pavlogomeniuk@gmail.com"
+          git config --global user.name "PavloGomeniuk"
           git add .
           git commit -m "change version"
           git push origin master
