@@ -51,7 +51,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    if: ${{matrix.services.tag}} != ''
     #name: Run ${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
@@ -61,6 +60,7 @@ jobs:
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
       - name: installAdditionalSoftware
+        if: ${{matrix.services.tag}} != ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
  
