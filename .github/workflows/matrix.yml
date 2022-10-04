@@ -62,4 +62,5 @@ jobs:
       - name: installAdditionalSoftware
         run: |
           echo "${{github.job}}"
+          echo $GITHUB_JOB
     
