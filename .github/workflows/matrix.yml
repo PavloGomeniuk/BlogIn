@@ -60,7 +60,7 @@ jobs:
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
       - name: installAdditionalSoftware
-        if: ${{matrix.services.tag}} != ''
+        if: matrix.services.tag != ""
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
  
