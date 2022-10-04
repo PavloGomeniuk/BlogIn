@@ -37,12 +37,10 @@ jobs:
 
       - id: set-matrix
         run: |
-          matrix="{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}"
-          echo $matrix
-          matrix1='{"services":$matrix}'
-          echo $matrix1
-          echo $matrix1 | jq .
-          echo "::set-output name=matrix::$matrix1"
+          matrix='{"services":{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}}'
+          echo $matrix 
+          echo $matrix | jq .
+          echo "::set-output name=matrix::$matrix"
           
   check-matrix:
     runs-on: ubuntu-latest
