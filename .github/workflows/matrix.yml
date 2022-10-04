@@ -62,5 +62,6 @@ jobs:
       - name: installAdditionalSoftware
         run: |
           echo "${{github.job}}"
-          echo $GITHUB_JOB
+          echo "${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}"
+
     
