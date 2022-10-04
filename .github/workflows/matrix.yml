@@ -48,7 +48,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    #if: github.event.inputs.HSC-BE != ''
+    if: github.job != 'build'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
