@@ -51,8 +51,8 @@ jobs:
           cat values.yaml.new
           yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
           ls -la
-          #diff -B values.yaml.noblanks values.yaml.new > patch.file
-          #cat patch.file
-          #patch --ignore-whitespace "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" patch.file
-          #rm -f values.yaml.* patch.file
-          #ls -la
+          diff -B values.yaml.noblanks values.yaml.new > patch.file
+          cat patch.file
+          patch --ignore-whitespace "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" patch.file
+          rm -f values.yaml.* patch.file
+          ls -la
