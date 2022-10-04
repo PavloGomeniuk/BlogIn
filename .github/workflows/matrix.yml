@@ -21,6 +21,11 @@ on:
         required: false
         default: 'v1'
         type: string
+      HSC-FE:
+        description: 'Enter tag that you need to change not tag is'
+        required: false
+        default: 'v1'
+        type: string
         
 jobs:
   matrix:
@@ -32,7 +37,7 @@ jobs:
 
       - id: set-matrix
         run: |
-          matrix='{"fruit":{"name":"apple","color":"green","price":1.20}}'
+          matrix="{"services":{"hsc-be":${{ github.event.inputs.HSC-BE }},"hsc-fe":${{ github.event.inputs.HSC-FE }}}}"
           echo $matrix
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix"
