@@ -61,3 +61,11 @@ jobs:
           patch --ignore-whitespace "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" patch.file
           rm -f values.yaml.* patch.file
           ls -la
+      - name: Git push
+        env:
+          TAG: ${{ github.event.inputs.HSC-BE }}
+        run: |
+          git add .
+          git commit -m "change version"
+          git push origin master
+        
