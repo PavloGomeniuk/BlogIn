@@ -45,7 +45,8 @@ jobs:
       - name: updateHscHelmChart
         run: |
           echo "hello"
-          #yq '.hsc-be.image.tag = "v1"' "environments/dev/hsc-be-proxy/values.yaml" > values.yaml.new
+          yq '.hsc-be.image.tag = "v1"' environments/dev/hsc-be-proxy/values.yaml > values.yaml.new
+          ls -la
           #yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
           #diff -B values.yaml.noblanks values.yaml.new > patch.file
           #cat patch.file
