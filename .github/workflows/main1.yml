@@ -34,8 +34,7 @@ jobs:
           
       - name: Create release branch
         run: |
-          sudo su
-          apt-get update
+          sudo apt-get update
           pip install --upgrade pip
           pip3 install git+https://github.com/python-semver/python-semver.git@3.0.0-dev.3
           pip install bumpversion
