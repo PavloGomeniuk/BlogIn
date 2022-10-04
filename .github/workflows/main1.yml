@@ -47,6 +47,7 @@ jobs:
         run: |
           pwd
           ls -la
+          echo ${{ github.event.inputs.Envirinment }}
           yq '.hsc-be.image.tag = "v1"' environments/${{ github.event.inputs.Envirinment }}/hsc-be-proxy/values.yaml > values.yaml.new
           yq '.' environments/${{ github.event.inputs.Envirinment }}/hsc-be-proxy/values.yaml > values.yaml.noblanks
           diff -B values.yaml.noblanks values.yaml.new > patch.file
