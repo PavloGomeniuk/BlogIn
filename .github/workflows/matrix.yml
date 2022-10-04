@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
-    #if: matrix.services.tag != ''
+    if: ${{matrix.services.tag}} != ''
     #name: Run ${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
