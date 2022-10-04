@@ -37,8 +37,8 @@ jobs:
 
       - id: set-matrix
         run: |
-          #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
-          matrix='{ "services" : [ "hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"]}'
+          matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
+          #matrix='{ "services" : [ "hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"]}'
           #matrix=$((
             #echo '{ "package" : ['
             #echo "${{ github.event.inputs.HSC-BE }}"
