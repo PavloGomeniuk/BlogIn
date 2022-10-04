@@ -46,7 +46,7 @@ jobs:
           #) | jq -c .)
           echo $matrix 
           echo $matrix | jq .
-          echo "::set-output name=matrix::$matrix | jq ."
+          echo "::set-output name=matrix::$matrix | jq -c ."
           
   check-matrix:
     runs-on: ubuntu-latest
