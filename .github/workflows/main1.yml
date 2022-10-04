@@ -49,7 +49,7 @@ jobs:
           yq '.hsc-be.image.tag = env(TAG)' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.new
           #ls -la
           cat values.yaml.new
-          yq '.' environments/dev/hsc-be-proxy/values.yaml > values.yaml.noblanks
+          yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
           ls -la
           #diff -B values.yaml.noblanks values.yaml.new > patch.file
           #cat patch.file
