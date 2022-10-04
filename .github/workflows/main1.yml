@@ -26,9 +26,6 @@ jobs:
   build:
     if: github.event.inputs.HSC-BE != ''
     runs-on: ubuntu-latest
-    env:
-      DIREC: ${{ github.event.inputs.Envirinment }}
-      VARI: ${{ github.event.inputs.HSC-BE }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -50,10 +47,10 @@ jobs:
           pwd
           ls -la
           echo $DIREC
-          yq '.hsc-be.image.tag = "v1"' "environments/"${{ github.event.inputs.Branch }}"/hsc-be-proxy/values.yaml" > values.yaml.new
-          yq '.' environments/$DIREC/hsc-be-proxy/values.yaml > values.yaml.noblanks
+          yq '.hsc-be.image.tag = "${{ github.event.inputs.HSC-BE }}"' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.new
+          yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
           diff -B values.yaml.noblanks values.yaml.new > patch.file
           cat patch.file
-          patch --ignore-whitespace environments/$DIREC/hsc-be-proxy/values.yaml patch.file
+          patch --ignore-whitespace "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" patch.file
           rm -f values.yaml.* patch.file
           ls -la
