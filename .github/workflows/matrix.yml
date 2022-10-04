@@ -32,11 +32,7 @@ jobs:
 
       - id: set-matrix
         run: |
-          matrix=$((
-            echo '{ "package" : ['
-            sed -n "/^REVDEP *:= */ { s///; p }" revdep-dev/Makefile | sed 's/ /, /g' | xargs -n 1 echo | sed -r 's/^([^,]*)(,?)$/"\1"\2/'
-            echo " ]}"
-          ) | jq -c .)
+          matrix= '{"fruit":{"name":"apple","color":"green","price":1.20}}'
           echo $matrix
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix"
