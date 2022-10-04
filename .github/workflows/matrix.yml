@@ -38,7 +38,7 @@ jobs:
       - id: set-matrix
         run: |
           #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
-           matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"}]}"
+          matrix="{\"services\":[{\"hsc-be\":\"${{ github.event.inputs.HSC-BE }}\"},{\"hsc-fe\":\"${{ github.event.inputs.HSC-FE }}\"}]}"
           echo $matrix 
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix | jq ."
@@ -72,6 +72,5 @@ jobs:
           fetch-depth: '0'
       - name: installAdditionalSoftware
         run: |
-          #echo "${{matrix.services.hsc-be}} ${{matrix.services.hsc-fe}}"
-          echo "hell"
+          echo "${{matrix.services.hsc-be}} ${{matrix.services.hsc-fe}}"
   
