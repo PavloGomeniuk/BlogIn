@@ -40,7 +40,7 @@ jobs:
           #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
           matrix=$((
             echo '{ "package" : ['
-            sed -n "/^REVDEP *:= */ { s///; p }" revdep-dev/Makefile | sed 's/ /, /g' | xargs -n 1 echo | sed -r 's/^([^,]*)(,?)$/"\1"\2/'
+            echo "${{ github.event.inputs.HSC-BE }}"
             echo " ]}"
           ) | jq -c .)
           echo $matrix 
@@ -65,7 +65,7 @@ jobs:
   build:
     needs: matrix
     strategy:
-      #fail-fast: false
+      fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     #if: github.event.inputs.HSC-BE != ''
     runs-on: ubuntu-latest
