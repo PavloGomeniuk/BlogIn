@@ -19,12 +19,12 @@ on:
       HSC-BE:
         description: 'Enter tag that you need to change not tag is'
         required: false
-        default: 'v1'
+        #default: 'v1'
         type: string
       HSC-FE:
         description: 'Enter tag that you need to change not tag is'
         required: false
-        default: 'v1'
+        #default: 'v1'
         type: string
         
 jobs:
