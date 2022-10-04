@@ -37,16 +37,19 @@ jobs:
 
       - id: set-matrix
         run: |
-          matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
+          #matrix='{"hsc-be":"${{ github.event.inputs.HSC-BE }}","hsc-fe":"${{ github.event.inputs.HSC-FE }}"}'
           #matrix='{ "services" : [ "hsc-be":["${{ github.event.inputs.HSC-BE }}"],"hsc-fe":["${{ github.event.inputs.HSC-FE }}]"]}'
-          #matrix=$((
-            #echo '{ "package" : ['
-            #echo "${{ github.event.inputs.HSC-BE }}"
-            #echo " ]}"
-          #) | jq -c .)
+          matrix=$((
+            echo '{ "hsc-be" : ['
+            echo "${{ github.event.inputs.HSC-BE }}"
+            echo " ]}"
+            echo '{ "hsc-fe" : ['
+            echo "${{ github.event.inputs.HSC-FE }}"
+            echo " ]}"
+          ) | jq -c .)
           echo $matrix 
           echo $matrix | jq .
-          echo "::set-output name=matrix::$matrix | jq -c ."
+          echo "::set-output name=matrix::$matrix"
           
   
   build:
