@@ -52,6 +52,7 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     if: github.job != 'e'
+    name: Run ${{ join(matrix.*, ' - ') }} - ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
