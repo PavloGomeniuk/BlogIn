@@ -1,0 +1,3 @@
+hsc-be:
+  image: 
+    tag: 1.0.19
