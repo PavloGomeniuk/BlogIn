@@ -43,6 +43,7 @@ jobs:
           wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.24.4/yq_linux_amd64 && chmod a+x /usr/local/bin/yq
 
       - name: updateHscHelmChart
+        continue-on-error: true
         env:
           TAG: ${{ github.event.inputs.HSC-BE }}
         run: |
