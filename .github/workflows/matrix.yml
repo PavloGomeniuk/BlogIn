@@ -73,4 +73,5 @@ jobs:
       - name: installAdditionalSoftware
         run: |
           echo "${{matrix.services.hsc-be}} ${{matrix.services.hsc-fe}}"
-  
+          echo "${{job.name}}"
+    
