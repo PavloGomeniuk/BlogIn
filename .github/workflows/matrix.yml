@@ -61,7 +61,7 @@ jobs:
     #if: ${{matrix.services.tag}} != ''
     steps:
       - name: Check job
-        if: matrix.services.tag = ''
+        if: matrix.services.tag == ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
           exit 1
