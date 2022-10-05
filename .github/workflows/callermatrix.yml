@@ -38,4 +38,7 @@ on:
 jobs:
   call-workflow:
     uses: ./.github/workflows/matrix.yml
+    with:
+      Environment: ${{ inputs.Environment }}
+      Branch: ${{ github.event.inputs.Branch }}
     
