@@ -21,6 +21,11 @@ on:
         required: false
         default: 'v1'
         type: string
+      Service:
+        description: 'Enter tag that you need to change not tag is'
+        required: false
+        default: 'hsc-be'
+        type: string
         
 jobs:
   build:
@@ -46,8 +51,9 @@ jobs:
         continue-on-error: true
         env:
           TAG: ${{ github.event.inputs.HSC-BE }}
+          SVC: ${{ github.event.inputs.Service }}
         run: |
-          yq '.hsc-be.image.tag = env(TAG)' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.new
+          yq '.env(SVC).image.tag = env(TAG)' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.new
           #ls -la
           cat values.yaml.new
           yq '.' "environments/${{ github.event.inputs.Environment }}/hsc-be-proxy/values.yaml" > values.yaml.noblanks
