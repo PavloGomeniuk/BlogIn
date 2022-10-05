@@ -59,7 +59,7 @@ jobs:
     name: ${{matrix.services.service}}
     env:
       FIX: ${{ matrix.services.tag }}
-    if: env.FIX != ''
+    if: env(FIX) != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
