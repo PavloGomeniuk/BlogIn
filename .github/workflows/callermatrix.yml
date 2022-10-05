@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Caller-Matrix
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Environment name on which you want to make change'
+        required: true
+        type: string
+      Branch:
+        description: 'Branch name on which jobs will be executed'
+        required: true
+        type: string
+        default: 'master'
+      Hsc-be:
+        description: 'Enter hsc-be tag that you need to change'
+        required: false
+        type: string
+      Hsc-fe:
+        description: 'Enter hsc-fe tag that you need to change'
+        required: false
+        type: string
+      Hsc-fe-admin:
+        description: 'Enter hsc-fe-admin tag that you need to change'
+        required: false
+        type: string
+      Hsc-spec-public:
+        description: 'Enter hsc-spec-public tag that you need to change'
+        required: false
+        type: string
+      Hsc-spec-internal:
+        description: 'Enter hsc-spec-internal tag that you need to change'
+        required: false
+        type: string
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/matrix.yml
+    
