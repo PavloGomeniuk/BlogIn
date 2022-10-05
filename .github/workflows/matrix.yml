@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: set-matrix
         run: |
-          matrix="{\"services\":[{\"service\":\"hsc-be\",\"tag\":\"${{ github.event.inputs.Hsc-be }}\"},{\"service\":\"hsc-fe\",\"tag\":\"${{ github.event.inputs.Hsc-fe }}\"},{\"service\":\"hsc-fe-admin\",\"tag\":\"${{ github.event.inputs.Hsc-fe-admin }}\"},{\"service\":\"hsc-spec-public\",\"tag\":\"${{ github.event.inputs.Hsc-spec-public}}\"},{\"service\":\"hsc-spec-internal\",\"tag\":\"${{ github.event.inputs.Hsc-spec-internal}}\"}]}"
+          matrix="{"services":[{"service":"hsc-be","tag":"${{ github.event.inputs.Hsc-be }}"},{"service":"hsc-fe","tag":"${{ github.event.inputs.Hsc-fe }}"},{"service":"hsc-fe-admin","tag":"${{ github.event.inputs.Hsc-fe-admin }}"},{"service":"hsc-spec-public","tag":"${{ github.event.inputs.Hsc-spec-public}}"},{"service":"hsc-spec-internal","tag":"${{ github.event.inputs.Hsc-spec-internal}}"}]}"
           echo $matrix 
           echo $matrix | jq .
           echo "::set-output name=matrix::$matrix | jq ."
@@ -60,10 +60,10 @@ jobs:
     runs-on: ubuntu-latest
     #if: ${{matrix.services.tag}} != ''
     steps:
-      - name: Check job
+      - name: Check if change is needed
         if: matrix.services.tag == ''
         run: |
-          echo "${{matrix.services.service}} ${{matrix.services.tag}}"
+          echo "Nothing to change"
           exit 1
       - uses: actions/checkout@v3
         with:
