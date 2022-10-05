@@ -1,20 +1,15 @@
 name: Matrix
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       Environment:
         description: 'Environment name on which you want to make change'
         required: true
-        type: choice
-        default: 'dev'
-        options: 
-        - dev
-        - demo
-        - qa
-        - prod
+        type: string
       Branch:
         description: 'Branch name on which jobs will be executed'
         required: true
+        type: string
         default: 'master'
       Hsc-be:
         description: 'Enter hsc-be tag that you need to change'
