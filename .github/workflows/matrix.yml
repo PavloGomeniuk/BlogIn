@@ -61,19 +61,10 @@ jobs:
     #if: ${{matrix.services.tag}} != ''
     steps:
       - name: Check job
-        #if: matrix.services.tag != ''
+        if: matrix.services.tag = ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
-          function is_in_remote() {
-            local existed_in_remote=$(echo ${{matrix.services.tag}})
-            if [[ -z ${existed_in_remote} ]]; then
-              echo "Branch does not exist"
-            else
-              echo "Branch already exist"
-              #exit 1
-            fi
-          }
-          function is_in_remote()
+          exit 1
       - uses: actions/checkout@v3
         with:
           repository: PavloGomeniuk/BlogIn
