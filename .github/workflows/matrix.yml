@@ -62,11 +62,11 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     name: ${{matrix.services.service}}
+    if: matrix.services.tag == ''
     runs-on: ubuntu-latest
-    #if: ${{matrix.services.tag}} != ''
     steps:
       - name: Check if change is needed
-        if: matrix.services.tag == ''
+        #if: matrix.services.tag == ''
         run: |
           echo "Nothing to change"
           exit 1
