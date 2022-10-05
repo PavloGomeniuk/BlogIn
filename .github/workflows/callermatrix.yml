@@ -6,15 +6,6 @@ name: Caller-Matrix
 on:
   workflow_dispatch:
     inputs:
-      Environment:
-        description: 'Environment name on which you want to make change'
-        required: true
-        type: string
-      Branch:
-        description: 'Branch name on which jobs will be executed'
-        required: true
-        type: string
-        default: 'master'
       Hsc-be:
         description: 'Enter hsc-be tag that you need to change'
         required: false
@@ -39,7 +30,7 @@ jobs:
   call-workflow:
     uses: ./.github/workflows/matrix.yml
     with:
-      Environment: ${{ inputs.Environment }}
-      Branch: ${{ inputs.Branch }}
+      Environment: "dev"
+      Branch: "master"
       Hsc-fe: ${{ inputs.Hsc-fe }}
     
