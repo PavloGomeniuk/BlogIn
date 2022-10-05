@@ -58,15 +58,26 @@ jobs:
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     name: ${{matrix.services.service}}
     runs-on: ubuntu-latest
-    if: ${{matrix.services.tag}} != ''
+    #if: ${{matrix.services.tag}} != ''
     steps:
+      - name: Check job
+        #if: matrix.services.tag != ''
+        run: |
+          echo "${{matrix.services.service}} ${{matrix.services.tag}}"
+          if [[ -z ${matrix.services.tag} ]]; then
+              echo "Branch does not exist"
+            else
+              echo "Branch already exist"
+              #exit 1
+            fi
+        
       - uses: actions/checkout@v3
         with:
           repository: PavloGomeniuk/BlogIn
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
       - name: installAdditionalSoftware
-        if: matrix.services.tag != ''
+        #if: matrix.services.tag != ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
  
