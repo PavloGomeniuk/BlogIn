@@ -1,6 +1,6 @@
 hsc-be:
   image: 
-    tag: v2
+    tag: v3
 
 hsc-fe:
   image:
