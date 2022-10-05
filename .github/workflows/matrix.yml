@@ -62,21 +62,16 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     name: ${{matrix.services.service}}
-    if: matrix.services.tag == ''
     runs-on: ubuntu-latest
     steps:
-      - name: Check if change is needed
-        #if: matrix.services.tag == ''
-        run: |
-          echo "Nothing to change"
-          exit 1
       - uses: actions/checkout@v3
+        if: matrix.services.tag != ''
         with:
           repository: PavloGomeniuk/BlogIn
           ref: ${{ github.event.inputs.Branch }}
           fetch-depth: '0'
       - name: installAdditionalSoftware
-        #if: matrix.services.tag != ''
+        if: matrix.services.tag != ''
         run: |
           echo "${{matrix.services.service}} ${{matrix.services.tag}}"
  
